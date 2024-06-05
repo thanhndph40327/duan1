@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .product-container {
+        max-width: 800px;
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .product-images img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .product-details {
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .product-details h1 {
+        font-size: 24px;
+    }
+
+    .product-details button {
+        margin-top: 30px;
+    }
+
+    .product-price {
+        font-weight: bold;
+        margin-top: 10px;
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: brown;
+    }
+
+    .product-description {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .product-description_2 {
+        font-size: 16px;
+        color: #523333;
+    }
+
+    .product-options {
+        margin-top: 10px;
+    }
+
+    .product-options select {
+        color: black;
+        padding-top: 20px;
+    }
+
+    button {
+
+        background-color: brown !important;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    #addToCartBtn {
+        width: 150px;
+    }
+
+    .button-buy button :hover {
+        background-color: #45a049;
+    }
+
+    .product-reviews {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .product-reviews h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* Thêm code sau vào styles.css */
+    .product-quantity {
+        margin-top: 10px;
+    }
+
+    .product-quantity label {
+        margin-right: 10px;
+    }
+
+    .product-quantity button {
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        background-color: brown !important;
+        color: #fff;
+        border-radius: 5px;
+        margin-right: 5px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .button_buy {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .product-quantity button:hover {
+        background-color: #45a049;
+    }
+
+    .product-quantity input {
+        width: 50px;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    /* Thêm code sau vào styles.css */
+    .product-reviews {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .product-reviews {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+        max-height: 200px;
+        /* Chiều cao tối đa của phần mô tả */
+        overflow: auto;
+        /* Bật thanh cuộn khi nội dung vượt quá chiều cao tối đa */
+    }
+
+    .product-reviews h2,
+    .product-text h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .product-text {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .comment-input {
+        margin-top: 20px;
+    }
+
+    .comment-input label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .comment-input textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .comment-input button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .comment-input button:hover {
+        background-color: #45a049;
+    }
+
+    .comment {
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    /* Thêm code sau vào styles.css */
+    .product-text {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+        max-height: 100px;
+        /* Chiều cao tối đa của phần mô tả */
+        overflow: auto;
+        /* Bật thanh cuộn khi nội dung vượt quá chiều cao tối đa */
+    }
+
+    /* Thanh cuộn tùy chỉnh */
+    .product-text::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .product-text::-webkit-scrollbar-thumb {
+        background-color: #4caf50;
+        border-radius: 5px;
+    }
+
+    .product-text::-webkit-scrollbar-track {
+        background-color: #ddd;
+        border-radius: 5px;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <title>Product Details</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="../img/Olive Green Pink Modern Minimalist Company Logo (1).png" alt=""></a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="iphone.html">Iphone</a></li>
+                <li><a href="mac.html">Mac</a></li>
+                <li><a href="watch.html">Watch</a></li>
+                <li><a href="phu_kien.html">Phụ kiện</a></li>
+                <!-- <li><a href="#">Giầy chạy bộ</a></li> -->
+            </ul>
+        </nav>
+        <div class="header_right">
+            <div class="search">
+                <form action="" method="POST">
+                    <input type="text" placeholder="Tìm kiếm từ khóa">
+                    <div class="search_icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </form>
+            </div>
+            <div class="cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="login">
+                <i class="fa-solid fa-user"></i>
+                <ul>
+                    <li><a href="form_dn.html">Đăng nhập</a></li>
+                    <li><a href="form.html">Đăng ký</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-container">
+        <div class="product-images">
+            <img src="../img/iphone-15-pro-max-blue-thumbtz-650x650.webp" alt="Product Image 1">
+        </div>
+        <div class="product-details">
+            <h1>Ốp lưng MagSafe iPhone 15 Plus</h1>
+            <p class="product-price">Giá: 1,990,000 VND</p>
+            <p class="product-description">
+                Ốp lưng MagSafe chính hãng từ Apple, dành cho iPhone 15 Plus.
+                Vải tinh tế và dễ dàng lắp đặt.
+            </p>
+            <div class="product-options">
+                <label for="color">Màu sắc:</label>
+                <select id="color">
+                    <option value="black">Đen</option>
+                    <option value="white">Trắng</option>
+                </select>
+            </div>
+            <div class="product-quantity">
+                <label for="quantity">Số lượng:</label>
+                <button id="decreaseBtn">-</button>
+                <input type="number" id="quantity" value="1" min="1">
+                <button id="increaseBtn">+</button>
+            </div>
+            <div class="button_buy">
+                <button id="addToCartBtn">Thêm vào giỏ hàng</button>
+                <button id="addToCartBtn">Mua ngay!</button>
+            </div>
+            <br>
+            <p class="product-description_2">
+                - Bảo hành lên đến 2 năm, đổi trả trong vòng 7 ngày ! <br>- Giao hàng nhanh toàn quốc !
+
+
+            </p>
+
+        </div>
+    </div>
+    <div class="product-text">
+        <h2> Mô tả</h2>
+        <p>Ốp lưng Magsafe cho iPhone 15 Plus Vải Tinh Dệt Apple MT473 là loại phụ kiện giúp người dùng vừa sạc được
+            iPhone 15 Plus vừa bảo vệ được điện thoại khi đang sạc. Sản phẩm có chất liệu cao cấp, được thiết kế hiện
+            đại, tinh tế ôm trọn toàn bộ phần lưng của chiếc iPhone và chống sốc tuyệt vời khi bị va đập. Cùng tìm hiểu
+            về mẫu ốp lưng này có gì mới mẻ nhé!
+            Ưu điểm của ốp lưng Magsafe cho iPhone 15 Plus Vải Tinh Dệt Apple MT473</p>
+    </div>
+    </div>
+
+    <div class="product-reviews">
+        <h2>Bình luận sản phẩm</h2>
+        <div id="comments"></div>
+        <div class="comment-input">
+            <label for="comment">Viết bình luận:</label>
+            <textarea id="comment" rows="4"></textarea>
+            <button id="submitCommentBtn">Gửi</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <footer>
+        <div class="footer_logo">
+            <img src="../img/Olive Green Pink Modern Minimalist Company Logo (1).png" alt="">
+        </div>
+        <div class="center">
+            <h3>Địa chỉ</h3>
+            <div class="right_icon">
+                <p>Miền Bắc</p>
+                <a href="#">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Số nhà 40, P.Nguyên xã, P.Minh Khai, Q.Bắc Từ Liêm</span>
+                </a>
+            </div>
+            <div class="right_icon">
+                <p>Miền Trung</p>
+                <a href="#">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Số nhà 40, P.Nguyên xã, P.Minh Khai, Q.Bắc Từ Liêm</span>
+                </a>
+            </div>
+            <div class="right_icon">
+                <p>Miền Nam</p>
+                <a href="#">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Số nhà 40, P.Nguyên xã, P.Minh Khai, Q.Bắc Từ Liêm</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="right">
+            <h3>Trợ giúp</h3>
+            <div class="right_icon">
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+            </div>
+            <div class="right_icon">
+                <a href="#">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>0357219736</span>
+                </a>
+            </div>
+            <div class="right_icon">
+                <a href="#">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+            </div>
+            <div class="right_icon">
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>document.getElementById('addToCartBtn').addEventListener('click', function () {
+            alert('Sản phẩm đã được thêm vào giỏ hàng!');
+            // Thêm chức năng xử lý giỏ hàng ở đây nếu cần
+        });
+        // Thêm code sau vào script.js
+        document.getElementById('addToCartBtn').addEventListener('click', function () {
+            addToCart();
+        });
+
+        document.getElementById('decreaseBtn').addEventListener('click', function () {
+            decreaseQuantity();
+        });
+
+        document.getElementById('increaseBtn').addEventListener('click', function () {
+            increaseQuantity();
+        });
+
+        function addToCart() {
+            var quantity = parseInt(document.getElementById('quantity').value, 10);
+
+            if (isNaN(quantity) || quantity < 1) {
+                alert('Vui lòng nhập số lượng hợp lệ.');
+                return;
+            }
+
+            alert('Đã thêm ' + quantity + ' sản phẩm vào giỏ hàng!');
+            // Thêm chức năng xử lý giỏ hàng ở đây nếu cần
+        }
+
+        function decreaseQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            var currentQuantity = parseInt(quantityInput.value, 10);
+
+            if (currentQuantity > 1) {
+                quantityInput.value = currentQuantity - 1;
+            }
+        }
+
+        function increaseQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            var currentQuantity = parseInt(quantityInput.value, 10);
+
+            quantityInput.value = currentQuantity + 1;
+        }
+
+    </script>
+</body>
+
+</html>
